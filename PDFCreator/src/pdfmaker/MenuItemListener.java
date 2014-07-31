@@ -36,6 +36,7 @@ public class MenuItemListener implements ActionListener {
 			}
 			break;
 		case "SAVEASEXTRACTEDTEXT":
+				if(GUIControls.CheckContentAreaExistence()!=false){
 				saveAsFile.setDialogTitle("Save As");
 				int userSave = saveAsFile.showSaveDialog(GUIControls.mainWindow);
 				if(userSave==JFileChooser.APPROVE_OPTION)
@@ -57,16 +58,21 @@ public class MenuItemListener implements ActionListener {
 					writer.println(GUIControls.GetExtractedText());
 					writer.close();
 				}
+				}else{
+					GUIControls.CreateAlertBox("Open a pdf file before trying to save...");
+					
+				}
 			break;
 		case "QUIT":			
 			GUIControls.mainWindow.dispose();
 			break;
+		case "ABOUT":
+			GUIControls.CreateAlertBox("PDF Player v0.1");
 		default:
 			break;
 			
 		}		
-	}
-	
+	}	
 	private static File CreateNewFile(String fName){
 		File fNew = new File(fName);
 		return fNew;

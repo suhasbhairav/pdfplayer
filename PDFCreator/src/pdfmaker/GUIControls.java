@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -26,6 +27,7 @@ public class GUIControls{
 	private static JMenu fileMenu = null;
 	private static JMenu helpMenu= null;
 	public static String sContent = null;
+	private static JOptionPane alertBox = null;
 	public static void prepareGUI(){	
 		CreateMainWindow();		
 	}
@@ -71,6 +73,12 @@ public class GUIControls{
 	}
 	private static void ClearContentArea(){
 		contentArea.setText("");
+	}
+	public static Boolean CheckContentAreaExistence(){
+		if(contentArea!=null){
+			return true;
+		}
+		return false;
 	}
 	/*private static void DeleteContentPanel(){
 		contentPanel.removeAll();
@@ -165,6 +173,9 @@ public class GUIControls{
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 		tabbedPane.setVisible(true);
 		return tabbedPane;
-	}	
+	}
+	public static void CreateAlertBox(String message){
+		JOptionPane.showMessageDialog(mainWindow, message);
+	}
 }
 
