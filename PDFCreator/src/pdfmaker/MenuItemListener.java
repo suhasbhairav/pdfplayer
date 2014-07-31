@@ -30,6 +30,7 @@ public class MenuItemListener implements ActionListener {
 				
 				}
 				else{
+					
 					GUIControls.SetContentArea(PDFExtractor.TextExtract(openFile.getSelectedFile().getAbsolutePath().toString()));
 				}
 			}
@@ -42,8 +43,13 @@ public class MenuItemListener implements ActionListener {
 					File fileSave = saveAsFile.getSelectedFile();
 					PrintWriter writer=null;
 					try {
+						if(fileSave.getAbsolutePath()==null)
+						{
+							CreateNewFile(fileSave.getAbsolutePath());
+						}
 						writer = new PrintWriter(fileSave.getAbsolutePath(),"UTF-8");
-					} catch (FileNotFoundException
+					
+						} catch (FileNotFoundException
 							| UnsupportedEncodingException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -59,5 +65,10 @@ public class MenuItemListener implements ActionListener {
 			break;
 			
 		}		
+	}
+	
+	private static File CreateNewFile(String fName){
+		File fNew = new File(fName);
+		return fNew;
 	}
 }
