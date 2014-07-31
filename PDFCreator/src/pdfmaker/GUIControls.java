@@ -26,8 +26,7 @@ public class GUIControls{
 	private static MenuItemListener  menuItemListener = new MenuItemListener();
 	private static JMenu fileMenu = null;
 	private static JMenu helpMenu= null;
-	public static String sContent = null;
-	private static JOptionPane alertBox = null;
+	public static String sContent = null;	
 	public static void prepareGUI(){	
 		CreateMainWindow();		
 	}
