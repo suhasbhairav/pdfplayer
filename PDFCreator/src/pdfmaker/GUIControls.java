@@ -1,10 +1,7 @@
 package pdfmaker;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -18,8 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
-public class GUIControls{
-	
+public class GUIControls{	
 	public static JFrame mainWindow = null;
 	private static JPanel contentPanel = null;
 	private static JMenuBar menuBar = null;
@@ -30,10 +26,8 @@ public class GUIControls{
 	private static JMenu fileMenu = null;
 	private static JMenu helpMenu= null;
 	public static String sContent = null;
-	public static void prepareGUI(){
-	
-		CreateMainWindow();
-		
+	public static void prepareGUI(){	
+		CreateMainWindow();		
 	}
 	
 	public static JFrame CreateMainWindow(){
@@ -49,8 +43,7 @@ public class GUIControls{
 		mainWindow.setJMenuBar(CreateMenuBar());
 		mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		mainWindow.setLayout(new BorderLayout());		
-		mainWindow.setVisible(true);
-		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainWindow.setVisible(true);		
 		mainWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		return mainWindow;
 	}
@@ -79,9 +72,9 @@ public class GUIControls{
 	private static void ClearContentArea(){
 		contentArea.setText("");
 	}
-	private static void DeleteContentPanel(){
+	/*private static void DeleteContentPanel(){
 		contentPanel.removeAll();
-	}
+	}*/
 	
 	public static Boolean CheckExistenceOfContentPanel(){
 		
@@ -172,9 +165,6 @@ public class GUIControls{
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 		tabbedPane.setVisible(true);
 		return tabbedPane;
-	}
-	
-	
-	
+	}	
 }
 

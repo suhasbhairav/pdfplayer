@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.filechooser.*;
 
 @SuppressWarnings("unused")
@@ -51,7 +52,8 @@ public class MenuItemListener implements ActionListener {
 					writer.close();
 				}
 			break;
-		case "QUIT":
+		case "QUIT":			
+			GUIControls.mainWindow.dispose();
 			break;
 		default:
 			break;

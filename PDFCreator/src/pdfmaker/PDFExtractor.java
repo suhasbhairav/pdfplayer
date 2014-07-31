@@ -18,7 +18,7 @@ public class PDFExtractor {
 	private  PDFTextStripper pdfStripper = null;
 	private static File file = null;
 	private static String sExtractedContent = null;
-	@SuppressWarnings("unused")
+
 	public static String TextExtract(String fileName){	
 		PDFExtractor pdOb = new PDFExtractor();
 		try {
