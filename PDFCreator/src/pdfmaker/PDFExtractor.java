@@ -17,9 +17,9 @@ public class PDFExtractor {
 	private  COSDocument cosDoc = null;
 	private  PDFTextStripper pdfStripper = null;
 	private static File file = null;
-	private static String sContent = null;
+	private static String sExtractedContent = null;
 	@SuppressWarnings("unused")
-	public static void TextExtract(String fileName){	
+	public static String TextExtract(String fileName){	
 		PDFExtractor pdOb = new PDFExtractor();
 		try {
 			file = new File(fileName);
@@ -28,8 +28,8 @@ public class PDFExtractor {
 			pdOb.cosDoc = pdOb.pdfParse.getDocument();
 			pdOb.pdfStripper = new PDFTextStripper();
 			pdOb.pdDoc = new PDDocument(pdOb.cosDoc);
-			sContent =pdOb.pdfStripper.getText(pdOb.pdDoc);
-			System.out.println(sContent);
+			sExtractedContent =pdOb.pdfStripper.getText(pdOb.pdDoc);
+			pdOb.cosDoc.close();
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -38,6 +38,7 @@ public class PDFExtractor {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return sExtractedContent;
 	}
 
 	
