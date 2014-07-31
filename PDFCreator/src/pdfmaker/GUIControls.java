@@ -1,8 +1,11 @@
 package pdfmaker;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -45,23 +48,53 @@ public class GUIControls{
 		
 		mainWindow.setJMenuBar(CreateMenuBar());
 		mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		mainWindow.setLayout(new FlowLayout());
+		mainWindow.setLayout(new BorderLayout());		
 		mainWindow.setVisible(true);
+		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		return mainWindow;
+	}
+	public static void CloseWindow(){
+		mainWindow.removeAll();
+		
 	}
 	
 	
 	public static void CreateExtractedTextContent(String content){
-		sContent = content;
+		sContent = content;		
 		mainWindow.add(CreateContentPanel());
-		contentArea.setText(sContent);		
+		ClearContentArea();
+		contentArea.setText(sContent);
+		contentArea.setCaretPosition(0);
 		mainWindow.setVisible(true);
 	}
+	public static void SetContentArea(String content){
+		ClearContentArea();
+		contentArea.setText(content);
+		contentArea.setCaretPosition(0);
+	}
+	public static String GetExtractedText(){		
+		return contentArea.getText();
+	}
+	private static void ClearContentArea(){
+		contentArea.setText("");
+	}
+	private static void DeleteContentPanel(){
+		contentPanel.removeAll();
+	}
 	
+	public static Boolean CheckExistenceOfContentPanel(){
+		
+		if(contentArea!=null){
+			return true;
+		}
+		return false;
+		
+	}
 	private static JPanel CreateContentPanel(){
-		contentPanel = new JPanel();
+		contentPanel = new JPanel();		
 		contentPanel.setSize(new Dimension(800,600));
-		contentPanel.add(CreateScrollPane());
+		contentPanel.add(CreateTabbedPane());
 		contentPanel.setVisible(true);		
 		return contentPanel;
 	}
@@ -118,19 +151,27 @@ public class GUIControls{
 	}
 	
 	private static JTextArea CreateContentArea(){
-		contentArea = new JTextArea();
+		contentArea = new JTextArea();		
 		contentArea.setLineWrap(true);
-		contentArea.setWrapStyleWord(true);
-		
-		contentArea.setSize(new Dimension(700,500));
+		contentArea.setWrapStyleWord(true);		
+		contentArea.setSize(new Dimension(1200,800));
+		contentArea.setColumns(500);
 		return contentArea;
 	}
 	private static JScrollPane CreateScrollPane(){
 		contentScrollPane = new JScrollPane(CreateContentArea());
-		contentScrollPane.setSize(new Dimension(750,550));
-		contentScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);		
+		contentScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		contentScrollPane.setPreferredSize(new Dimension(1200,900));
+			
 		contentScrollPane.setVisible(true);
 		return contentScrollPane;
+	}
+	private static JTabbedPane CreateTabbedPane(){
+		tabbedPane = new JTabbedPane();
+		tabbedPane.addTab("Document",null,CreateScrollPane(),"Document");
+		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+		tabbedPane.setVisible(true);
+		return tabbedPane;
 	}
 	
 	

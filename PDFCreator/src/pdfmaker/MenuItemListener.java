@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.*;
 
+@SuppressWarnings("unused")
 public class MenuItemListener implements ActionListener {
 	
 	private static JFileChooser openFile = new JFileChooser(new File("."));
@@ -23,8 +24,14 @@ public class MenuItemListener implements ActionListener {
 			openFile.addChoosableFileFilter(new FileFilters());
 			openFile.showOpenDialog(null);
 			if(openFile.getSelectedFile()!=null){				
+				if(GUIControls.CheckExistenceOfContentPanel()==false){
 				GUIControls.CreateExtractedTextContent(PDFExtractor.TextExtract(openFile.getSelectedFile().getAbsolutePath().toString()));				
-			}			
+				
+				}
+				else{
+					GUIControls.SetContentArea(PDFExtractor.TextExtract(openFile.getSelectedFile().getAbsolutePath().toString()));
+				}
+			}
 			break;
 		case "SAVEASEXTRACTEDTEXT":
 				saveAsFile.setDialogTitle("Save As");
@@ -40,7 +47,7 @@ public class MenuItemListener implements ActionListener {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					//writer.println(GUIControls.GetExtractedText());
+					writer.println(GUIControls.GetExtractedText());
 					writer.close();
 				}
 			break;
@@ -51,7 +58,4 @@ public class MenuItemListener implements ActionListener {
 			
 		}		
 	}
-	
-
-
 }
