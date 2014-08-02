@@ -171,8 +171,7 @@ public class GUIControls{
 	private static JScrollPane CreateScrollPane(){
 		contentScrollPane = new JScrollPane(CreateContentArea());
 		contentScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		contentScrollPane.setPreferredSize(new Dimension(1200,900));
-			
+		contentScrollPane.setPreferredSize(new Dimension(1200,900));			
 		contentScrollPane.setVisible(true);
 		return contentScrollPane;
 	}
