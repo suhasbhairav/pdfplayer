@@ -18,15 +18,18 @@ public class MenuItemListener implements ActionListener {
 	private static JFileChooser openFile = new JFileChooser(new File("."));
 	private static JFileChooser saveAsFile = new JFileChooser(new File("."));
 	
+	public static void InitializeFileFilters(){
+		openFile.addChoosableFileFilter(new FileFilters());
+	}
+	
 	public void actionPerformed(ActionEvent e){
 		String sEvent = e.getActionCommand().toUpperCase();
 		switch(sEvent){
-		case "EXTRACTTEXTFROMPDF":
-			openFile.addChoosableFileFilter(new FileFilters());
+		case "EXTRACTTEXTFROMPDF":			
 			openFile.showOpenDialog(null);
 			if(openFile.getSelectedFile()!=null){				
 				if(GUIControls.CheckExistenceOfContentPanel()==false){
-				GUIControls.CreateExtractedTextContent(PDFExtractor.TextExtract(openFile.getSelectedFile().getAbsolutePath().toString()));				
+				GUIControls.CreateExtractedTextContent(PDFExtractor.TextExtract(openFile.getSelectedFile().getAbsolutePath().toString()));			
 				
 				}
 				else{
@@ -62,6 +65,8 @@ public class MenuItemListener implements ActionListener {
 					GUIControls.CreateAlertBox("Open a pdf file before trying to save...");
 					
 				}
+			break;
+		case "VIEWPDF":			
 			break;
 		case "QUIT":			
 			GUIControls.mainWindow.dispose();

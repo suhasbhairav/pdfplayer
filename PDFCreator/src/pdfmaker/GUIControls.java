@@ -98,18 +98,18 @@ public class GUIControls{
 		contentPanel.setVisible(true);		
 		return contentPanel;
 	}
-	private static JMenuBar CreateMenuBar(){
+	private static JMenuBar CreateMenuBar(){		
 		menuBar = new JMenuBar();
 		menuBar.add(CreateFileMenu());
 		menuBar.add(CreateHelpMenu());
-		
+		MenuItemListener.InitializeFileFilters();
 		return menuBar;
 	}
 	
 	private static JMenu CreateFileMenu(){
 		fileMenu = new JMenu("File");
 		try{
-			JMenuItem openPdf = new JMenuItem("Open PDF");
+			JMenuItem openPdf = new JMenuItem("Open Pdf to Extract Text");
 			openPdf.setActionCommand("ExtractTextFromPdf");
 			openPdf.addActionListener(menuItemListener);
 			openPdf.setVisible(true);
@@ -119,17 +119,26 @@ public class GUIControls{
 			saveAs.addActionListener(menuItemListener);
 			saveAs.setVisible(true);
 			
+			JMenuItem viewPdf = new JMenuItem("View Pdf as Read-Only");
+			viewPdf.setActionCommand("ViewPdf");
+			viewPdf.addActionListener(menuItemListener);
+			viewPdf.setVisible(true);
+			
 			JMenuItem quit = new JMenuItem("Quit");
 			quit.setActionCommand("Quit");
 			quit.addActionListener(menuItemListener);
 			quit.setVisible(true);
 			
+			
+			
 			fileMenu.add(openPdf);
 			fileMenu.add(saveAs);
+			fileMenu.add(viewPdf);
 			fileMenu.add(quit);
 		}
 		catch(Exception e){
-			System.out.println(e.getLocalizedMessage());
+			//System.out.println(e.getLocalizedMessage());
+			CreateAlertBox(e.getLocalizedMessage());
 		}
 		
 		return fileMenu;
@@ -145,7 +154,8 @@ public class GUIControls{
 			
 			helpMenu.add(about);
 		}catch(Exception e){
-			System.out.println(e.getLocalizedMessage());
+			//System.out.println(e.getLocalizedMessage());
+			CreateAlertBox(e.getLocalizedMessage());
 		}
 		return helpMenu;
 	}
